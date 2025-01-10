@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صرف أموال أغنى رجل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            margin: 20px auto;
+            max-width: 1200px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #e0e0e0;
+            padding: 20px;
+            margin: 0 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        .money {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2e8b57;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .product {
+            width: 40%;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product h3 {
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+        .product p {
+            margin: 5px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .buy {
+            background: #4caf50;
+            color: white;
+        }
+        .remove {
+            background: #f44336;
+            color: white;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            min-height: 24px;
+        }
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .ad-box {
+            background: #fff;
+            border: 2px dashed #888;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .contact {
+            margin-top: 40px;
+            padding: 20px;
+            background: #2e8b57;
+            color: white;
+            border-radius: 10px;
+        }
+        .contact h3 {
+            margin-bottom: 10px;
+        }
+        .contact p {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>إعلانات</h3>
+            <div class="ad-box">
+                <p>إعلان 1</p>
+            </div>
+            <div class="ad-box">
+                <p>إعلان 2</p>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="money" id="money">$250,000,000,000</div>
+            <div class="products" id="products"></div>
+            <div class="message" id="message"></div>
+        </div>
+        <div class="sidebar">
+            <h3>إعلانات</h3>
+            <div class="ad-box">
+                <p>إعلان 3</p>
+            </div>
+            <div class="ad-box">
+                <p>إعلان 4</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <h3>للتواصل:</h3>
+        <p>البريد الإلكتروني: <a href="mailto:gamer12sakr12@gmail.com" style="color: #ffeb3b;">gamer12sakr12@gmail.com</a></p>
+        <p>إنشاء: <strong>Zeyad Sakr</strong></p>
+    </div>
+
+    <script>
+        let totalMoney = 250000000000;
+        const items = [
+            { name: "فيلا فاخرة", price: 5000000, count: 0 },
+            { name: "بيت متوسط", price: 300000, count: 0 },
+            { name: "سيارة رياضية", price: 150000, count: 0 },
+            { name: "جزيرة خاصة", price: 20000000, count: 0 },
+            { name: "هاتف ذكي", price: 1000, count: 0 },
+            { name: "كمبيوتر محمول", price: 2000, count: 0 },
+            { name: "طائرة خاصة", price: 40000000, count: 0 },
+            { name: "يخت فاخر", price: 25000000, count: 0 },
+            { name: "مروحية شخصية", price: 10000000, count: 0 },
+            { name: "قلادة ذهبية", price: 50000, count: 0 },
+            { name: "مجوهرات فاخرة", price: 500000, count: 0 },
+            { name: "منتجع صحي", price: 2000000, count: 0 },
+            { name: "قارب صغير", price: 100000, count: 0 },
+            { name: "ساعة فاخرة", price: 50000, count: 0 },
+            { name: "سيارة كهربائية", price: 60000, count: 0 },
+            { name: "منزل على البحر", price: 10000000, count: 0 },
+            { name: "مطعم فاخر", price: 2000000, count: 0 },
+            { name: "طاولة بلياردو", price: 20000, count: 0 },
+            { name: "كاميرا رقمية", price: 1500, count: 0 },
+            { name: "نظارات شمسية من ماركة فاخرة", price: 5000, count: 0 },
+            { name: "دراجة نارية رياضية", price: 150000, count: 0 },
+            { name: "تذكرة سفر إلى الفضاء", price: 5000000, count: 0 },
+            { name: "مدينة كاملة", price: 500000000, count: 0 },
+            { name: "شقة في برج سكني", price: 1500000, count: 0 },
+            { name: "قصر ملكي", price: 100000000, count: 0 },
+            { name: "دولة (أحلامك!)", price: 10000000000, count: 0 }
+        ];
+
+        const phrases = [
+            "أنت على وشك شراء شيء مذهل!",
+            "فلوسك بدأت تخلص! حاول الشراء بحذر.",
+            "ما زلت تملك الكثير من المال! استمتع بالشراء.",
+            "حافظ على رصيدك، لا تصرف كل شيء دفعة واحدة.",
+            "هل تظن أنك تستطيع شراء هذا؟!",
+            "المال يذهب سريعًا! فكر جيدًا قبل الشراء.",
+            "لقد وصلت إلى حد جديد من الرفاهية!",
+            "المال يحقق الأحلام، هل ستشتري ما يحقق لك أحلامك؟",
+            "أنت غني جدًا! هل سترتكب حماقة؟",
+            "هل تود أن تكون أغنى شخص في العالم؟",
+            "أنت في الطريق الصحيح نحو حياة مرفهة!",
+            "إذا استمريت على هذا المنوال، ستكون ملك العالم!",
+            "حاول أن تدير أموالك بحكمة، الغنى ليس فقط في المال.",
+            "كلما صرفت أكثر، كلما أصبح من الصعب العودة!",
+            "أنت تقترب من شراء شيء عظيم!",
+            "أنت في الطريق نحو حياة مليئة بالرفاهية.",
+            "لن يتوقف المال عن التدفق إذا استمريت في هذه الوتيرة.",
+            "الأشياء العظيمة تنتظرك! هل ستشتري المزيد؟",
+            "مع هذه الأموال، يمكنك فعل أي شيء!",
+            "تستطيع شراء كل ما تحلم به الآن!",
+            "أنت تملك القدرة على تحويل العالم كله!",
+            "هل ترغب في شراء حياة من الفخامة؟",
+            "لماذا لا تبدأ بشراء ما تريد الآن؟",
+            "هل أنت مستعد للعيش حياة الأغنياء؟",
+            "هل ستقترب من فقرك؟ أم ستستمتع بالمال؟",
+            "حافظ على المال بحكمة، أو ستجد نفسك بلا شيء.",
+            "أنت نجم في عالم المال!",
+            "أنت أفضل من كثيرين في هذا العالم!",
+            "كل خطوة هي بداية حياة جديدة.",
+            "المستقبل ينتظرك بأموالك، لكن كن حذرًا.",
+            "أنت في القمة! هل ستشتري أكثر؟",
+            "هل تعلم أنه مع هذا المال، يمكنك شراء السعادة؟",
+            "كلما اشتريت أكثر، كلما زاد سحرك في عالم الرفاهية.",
+            "إذا استمريت في الشراء، سيصبح المال جزءًا من حياتك."
+            // أضف المزيد من العبارات هنا حسب الحاجة
+        ];
+
+        function updateMoney() {
+            document.getElementById('money').textContent = `$${totalMoney.toLocaleString()}`;
+            const messageElement = document.getElementById('message');
+            if (totalMoney <= 0) {
+                messageElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+                messageElement.style.color = "red";
+            } else if (totalMoney > 200000000000) {
+                messageElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+                messageElement.style.color = "green";
+            } else if (totalMoney > 100000000000) {
+                messageElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+                messageElement.style.color = "orange";
+            } else {
+                messageElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+                messageElement.style.color = "red";
+            }
+        }
+
+        function renderProducts() {
+            const productsContainer = document.getElementById('products');
+            productsContainer.innerHTML = '';
+            items.forEach((item, index) => {
+                const productHTML = `
+                    <div class="product">
+                        <h3>${item.name}</h3>
+                        <p>السعر: $${item.price.toLocaleString()}</p>
+                        <p>الكمية: ${item.count}</p>
+                        <div class="buttons">
+                            <button class="buy" onclick="buy(${index})">شراء</button>
+                            <button class="remove" onclick="remove(${index})" ${item.count === 0 ? "disabled" : ""}>إزالة</button>
+                        </div>
+                    </div>
+                `;
+                productsContainer.innerHTML += productHTML;
+            });
+        }
+
+        function buy(index) {
+            const item = items[index];
+            if (totalMoney >= item.price) {
+                totalMoney -= item.price;
+                item.count += 1;
+                updateMoney();
+                renderProducts();
+            } else {
+                alert("لا يوجد مال كافٍ لشراء هذا!");
+            }
+        }
+
+        function remove(index) {
+            const item = items[index];
+            if (item.count > 0) {
+                totalMoney += item.price;
+                item.count -= 1;
+                updateMoney();
+                renderProducts();
+            }
+        }
+
+        updateMoney();
+        renderProducts();
+    </script>
+</body>
+</html>
